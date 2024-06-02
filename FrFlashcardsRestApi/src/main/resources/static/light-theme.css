@@ -1,0 +1,184 @@
+.root {
+    -fx-background-color: linear-gradient(to bottom, #ffffff, #f0f0f0);
+    -fx-text-fill: #333333;
+    -fx-font-family: "Segoe UI", sans-serif;
+}
+
+.table-view {
+    -fx-base: #ffffff;
+    -fx-control-inner-background: #ffffff;
+    -fx-table-cell-border-color: transparent;
+    -fx-text-background-color: #333333;
+    -fx-padding: 10px;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+}
+
+.button {
+    -fx-background-color: linear-gradient(to bottom, #e0e0e0, #d0d0d0);
+    -fx-text-fill: #333333;
+    -fx-border-color: #bbbbbb;
+    -fx-border-width: 1px;
+    -fx-border-radius: 20px;
+    -fx-padding: 10px 20px;
+    -fx-font-size: 14px;
+    -fx-cursor: hand;
+    -fx-background-radius: 20px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.15), 5, 0, 0, 1);
+}
+
+.button:hover {
+    -fx-background-color: linear-gradient(to bottom, #d0d0d0, #c0c0c0);
+}
+
+.radio-button, .check-box {
+    -fx-text-fill: #333333;
+}
+
+.border-pane {
+    -fx-border-color: #bbbbbb;
+    -fx-border-width: 1px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-padding: 10px;
+}
+
+.label {
+    -fx-text-fill: #333333;
+    -fx-font-size: 14px;
+}
+
+.tab-pane {
+    -fx-background-color: #ffffff;
+    -fx-border-radius: 10px;
+    -fx-padding: 10px;
+}
+
+.tab-pane:header {
+    -fx-background-color: #ffffff;
+    -fx-border-radius: 10px;
+}
+
+.tab {
+    -fx-background-color: #ffffff;
+    -fx-border-radius: 10px;
+}
+
+.tab-header-area {
+    -fx-background-color: #ffffff;
+}
+
+.tab-header-background {
+    -fx-background-color: #ffffff;
+}
+
+.hbox {
+    -fx-background-color: #ffffff;
+}
+
+.text-field {
+    -fx-background-color: #e0e0e0;
+    -fx-text-fill: #333333;
+    -fx-border-color: #cccccc;
+    -fx-border-radius: 10px;
+    -fx-padding: 10px;
+    -fx-background-radius: 10px;
+}
+
+.check-box {
+    -fx-background-color: #ffffff;
+    -fx-text-fill: #333333;
+}
+
+.table-column {
+    -fx-background-color: #ffffff;
+}
+
+.tab-pane > .tab-header-area > .headers-region {
+    -fx-background-color: #ffffff;
+}
+
+.tab-pane > .tab-header-area > .tab-header-background {
+    -fx-background-color: #ffffff;
+}
+
+.tab-pane > .tab-header-area > .control-buttons-tab {
+    -fx-background-color: #ffffff;
+}
+
+.tab-header-area .tab {
+    -fx-background-color: #ffffff;
+    -fx-border-radius: 10px;
+    -fx-padding: 5px 10px;
+    -fx-font-size: 14px;
+}
+
+.tab-header-area .tab:selected {
+    -fx-background-color: #e0e0e0;
+}
+
+.counter-label {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-alignment: center;
+    -fx-text-fill: #333333;
+}
+
+.french-word-label {
+    -fx-font-size: 36px;
+    -fx-font-weight: bold;
+    -fx-alignment: center;
+    -fx-text-fill: #333333;
+}
+
+.text-field-big {
+    -fx-font-size: 24px;
+    -fx-padding: 10px;
+    -fx-pref-width: 400px;
+    -fx-alignment: center;
+    -fx-background-color: #e0e0e0;
+    -fx-text-fill: #333333;
+    -fx-border-color: #cccccc;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+}
+
+.hbox {
+    -fx-alignment: center;
+}
+
+.vbox {
+    -fx-alignment: center;
+}
+
+#searchTab {
+    -fx-background-color: linear-gradient(to bottom, #e0e0e0, #d0d0d0);
+    -fx-border-radius: 10px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.15), 5, 0, 0, 1);
+}
+
+#flashCardsTab {
+    -fx-background-color: linear-gradient(to bottom, #f0f0f0, #e0e0e0);
+    -fx-border-radius: 10px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.15), 5, 0, 0, 1);
+}
+
+.tab .tab-label {
+    -fx-text-fill: #333333;
+}
+
+.success-msg {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-alignment: center;
+    -fx-text-fill: #008f00; /* Default color for success messages */
+}
+
+
+.tab:last-selected {
+    -fx-background-color: #d0d0d0;
+    -fx-border-color: #bbbbbb;
+    -fx-border-width: 2px;
+    -fx-border-radius: 10px;
+}
+
