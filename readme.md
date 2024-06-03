@@ -36,5 +36,4 @@ If you plan to use or distribute this data commercially, ensure compliance with 
 
 For further information, please refer to the [Lexique383 website](http://www.lexique.org).
 
-## This project is not affiliated with or endorsed by Duolingo.
-## It is an independent project created to aid learners using Duolingo’s courses.
+## This project is not affiliated with or endorsed by Duolingo. It is an independent project created to aid learners using Duolingo’s courses.
