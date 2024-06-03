@@ -16,7 +16,26 @@ Search by English, French, or Theme. Includes a pronunciation button.
 ![image](https://github.com/anbruzga/FrFlashCardsDuo/assets/60633443/2e247074-2cf2-44c7-a3e6-4264d703f344)
 
 #### Installation Instructions
-The current setup can run directly on a Raspberry Pi. If you prefer a different configuration, edit the IP addresses in `WebConfig` and `FlashcardService.js` to match your requirements.
+The current setup can run directly on a Raspberry Pi. If you prefer a different configuration, edit the IP addresses in `WebConfig` and `FlashcardService.js` to match your requirements
+
+
+##### Install and run backend
+   ```bash
+   git clone https://github.com/anbruzga/FrFlashCardsDuo.git
+   cd FrFlashCardsDuo/FrFlashcardsRestApi
+   mvn clean package
+   mvn spring-boot:run
+   ```
+
+##### Install and run frontend
+   ```bash
+   git clone https://github.com/yourusername/FrFlashCardsDuo.git
+   cd FrFlashCardsDuo/FrFlashcardsReact
+   npm install
+   npm start
+   ```
+
+
 
 ## Mentions and Disclaimers
 
