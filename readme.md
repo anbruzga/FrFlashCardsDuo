@@ -1,5 +1,5 @@
 ## THIS IS NOT SHAREABLE AT CURRENT STATE - WORK IN PROGRESS
-### Currently, I need to recompile the voice data to be compatible with provider's terms of service. Once that is done, this is how the app looks like:
+### Currently, I need to recompile the voice data to be compatible with provider's terms of service for sharing. Once that is done, this is how the app looks like:
 
 ### Generic Search, By English, French & Theme. Pronounciation button
 ![image](https://github.com/anbruzga/FrFlashCardsDuo/assets/60633443/341b9819-cb63-493f-9ee8-7beb6fd26df6)
