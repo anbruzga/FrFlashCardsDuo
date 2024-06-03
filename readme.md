@@ -15,7 +15,7 @@
 
 
 
-## Mentions
+## Mentions and Disclaimers
 ## Lexique383 Data
 
 This project includes data from the Lexique383 database, which provides detailed lexical information for around 140,000 French words. This includes orthographic and phonemic representations, associated lemmas, syllabation, grammatical categories, gender and number, and frequency data from corpuses of books and film subtitles.
@@ -35,3 +35,6 @@ If you plan to use or distribute this data commercially, ensure compliance with 
 ### Contact
 
 For further information, please refer to the [Lexique383 website](http://www.lexique.org).
+
+## This project is not affiliated with or endorsed by Duolingo.
+## It is an independent project created to aid learners using Duolingo’s courses.
