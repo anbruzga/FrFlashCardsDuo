@@ -18,8 +18,10 @@ public class WebConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/api/**")
-                        .allowedOrigins(allowedOrigins)
-                        .allowedMethods("GET", "OPTIONS");
+                        .allowedOrigins(allowedOrigins.split(","))
+                        .allowedMethods("GET", "OPTIONS")
+                        .allowedHeaders("*")
+                        .allowCredentials(true);
             }
         };
     }

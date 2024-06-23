@@ -1,35 +1,17 @@
-# Stage 1: Build the application
-FROM eclipse-temurin:22.0.1_8-jdk-ubi9-minimal as build
-
-# Install Maven using microdnf
-RUN microdnf install -y maven && microdnf clean all
-
-# Set the working directory
+# First stage: Build the application using Maven and JDK 21
+FROM maven:3.9.7-eclipse-temurin-21-alpine AS build
 WORKDIR /app
-
-# Copy the pom.xml file and download the dependencies
 COPY pom.xml .
-
-# Download the project dependencies
-RUN mvn dependency:go-offline
-
-# Copy the rest of the application source code
 COPY src ./src
+COPY .env-docker .env
+RUN mvn clean package
 
-# Build the application
-RUN mvn clean package -DskipTests
-
-# Stage 2: Run the application using the same base image
-FROM eclipse-temurin:22.0.1_8-jdk-ubi9-minimal
-
-# Set the working directory
+# Second stage: Run the application using the built JAR
+FROM eclipse-temurin:21-jdk-alpine
 WORKDIR /app
+COPY --from=build /app/target/FrFlashcardsRestApi-0.0.1-SNAPSHOT.jar /app/app.jar
+COPY .env-docker .env
+COPY entrypoint.sh entrypoint.sh
 
-# Copy the application jar from the previous stage
-COPY --from=build /app/target/FrFlashcardsRestApi-0.0.1-SNAPSHOT.jar app.jar
-
-# Expose the application port (for example, using port 9090)
 EXPOSE 9090
-
-# Run the application
-ENTRYPOINT ["java", "-jar", "app.jar"]
+ENTRYPOINT ["sh", "entrypoint.sh"]

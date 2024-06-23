@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  frontend:
+    build:
+      context: ./FrFlashCardsReact
+    ports:
+      - "3000:80"
+    env_file:
+      - ./FrFlashCardsReact/.env-docker
+    depends_on:
+      - backend
+
+  backend:
+    build:
+      context: ./FrFlashcardsRestApi
+      dockerfile: Dockerfile
+    ports:
+      - "9090:9090"
+    env_file:
+      - ./FrFlashcardsRestApi/.env-docker

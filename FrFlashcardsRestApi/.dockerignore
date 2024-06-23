@@ -1,0 +1,17 @@
+# Ignore Maven and Gradle files
+target/
+build/
+
+# Ignore temporary files
+*.tmp
+*.log
+*.swp
+
+# Ignore IDE specific files
+.idea/
+.vscode/
+*.iml
+
+# Ignore OS generated files
+.DS_Store
+Thumbs.db
