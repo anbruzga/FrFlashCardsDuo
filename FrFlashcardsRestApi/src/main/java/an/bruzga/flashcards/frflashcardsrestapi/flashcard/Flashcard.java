@@ -18,6 +18,7 @@ public class Flashcard {
     private String french;
 
     @Lob
+    @Basic(fetch = FetchType.LAZY)
     @Setter
     private byte[] frenchPronunciation;
 

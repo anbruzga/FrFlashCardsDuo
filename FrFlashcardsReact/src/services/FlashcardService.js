@@ -23,3 +23,7 @@ export const getFlashcardsByTheme = (theme) => {
 export const getDistinctThemes = () => {
     return axios.get(`${API_URL}/themes`);
 };
+
+export const getPronunciation = (id) => {
+    return axios.get(`${API_URL}/${id}/pronunciation`, { responseType: 'arraybuffer' });
+};

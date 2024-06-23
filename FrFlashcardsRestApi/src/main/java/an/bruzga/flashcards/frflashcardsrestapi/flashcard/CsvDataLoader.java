@@ -52,7 +52,7 @@ public class CsvDataLoader implements ApplicationRunner {
                 flashcardRepository.saveAll(flashcards);
 
                 // Debugging output
-                flashcardRepository.findAll().forEach(System.out::println);
+                // flashcardRepository.findAll().forEach(System.out::println);
             }
         } catch (IOException | CsvException e) {
             e.printStackTrace();

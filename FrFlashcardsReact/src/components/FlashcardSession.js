@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getDistinctThemes, getFlashcardsByTheme } from '../services/FlashcardService';
+import { getDistinctThemes, getFlashcardsByTheme, getPronunciation} from '../services/FlashcardService';
 import '../styles/FlashcardSession.css';
 
 const FlashcardSession = () => {
@@ -12,6 +12,7 @@ const FlashcardSession = () => {
     const [isFrenchToEnglish, setIsFrenchToEnglish] = useState(true);
     const [feedbackMessage, setFeedbackMessage] = useState('');
     const [feedbackColor, setFeedbackColor] = useState('');
+
 
     useEffect(() => {
         getDistinctThemes().then(response => {
@@ -92,8 +93,14 @@ const FlashcardSession = () => {
 
     const playPronunciation = () => {
         if (!currentFlashcard) return;
-        const audio = new Audio(`data:audio/mp3;base64,${currentFlashcard.frenchPronunciation}`);
-        audio.play();
+        getPronunciation(currentFlashcard.id).then(response => {
+            const audioBlob = new Blob([response.data], { type: 'audio/mp3' });
+            const audioUrl = URL.createObjectURL(audioBlob);
+            const audio = new Audio(audioUrl);
+            audio.play();
+        }).catch(error => {
+            console.error("Error playing pronunciation:", error);
+        });
     };
 
     if (!isGameStarted) {

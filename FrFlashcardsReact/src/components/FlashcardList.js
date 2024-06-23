@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getAllFlashcards } from '../services/FlashcardService';
+import { getAllFlashcards, getPronunciation } from '../services/FlashcardService';
 import '../styles/FlashcardList.css';
 
 const FlashcardList = () => {
@@ -14,7 +14,6 @@ const FlashcardList = () => {
 
     useEffect(() => {
         getAllFlashcards().then(response => {
-            console.log(response.data); // Log to verify pronunciation data
             setFlashcards(response.data);
             setFilteredFlashcards(response.data);
         });
@@ -41,17 +40,15 @@ const FlashcardList = () => {
         return text.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-zA-Z0-9]/g, '');
     };
 
-    const playPronunciation = (pronunciation) => {
-        if (!pronunciation) {
-            console.log("No pronunciation data available.");
-            return;
-        }
-        try {
-            const audio = new Audio(`data:audio/mp3;base64,${pronunciation}`);
+    const playPronunciation = (id) => {
+        getPronunciation(id).then(response => {
+            const audioBlob = new Blob([response.data], { type: 'audio/mp3' });
+            const audioUrl = URL.createObjectURL(audioBlob);
+            const audio = new Audio(audioUrl);
             audio.play();
-        } catch (error) {
+        }).catch(error => {
             console.error("Error playing pronunciation audio:", error);
-        }
+        });
     };
 
     return (
@@ -105,7 +102,7 @@ const FlashcardList = () => {
                         <td>{flashcard.english}</td>
                         <td>{flashcard.french}</td>
                         <td>{flashcard.theme}</td>
-                        <td><button onClick={() => playPronunciation(flashcard.frenchPronunciation)}>Play</button></td>
+                        <td><button onClick={() => playPronunciation(flashcard.id)}>Play</button></td>
                         <td>{flashcard.gender}</td>
                     </tr>
                 ))}

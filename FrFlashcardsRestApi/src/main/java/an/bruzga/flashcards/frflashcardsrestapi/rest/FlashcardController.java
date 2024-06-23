@@ -24,6 +24,11 @@ public class FlashcardController {
         return flashcardService.getFlashcardById(id);
     }
 
+    @GetMapping("/{id}/pronunciation")
+    public byte[] getPronunciation(@PathVariable int id) {
+        return flashcardService.getPronunciation(id);
+    }
+
     @GetMapping("/theme")
     public List<Flashcard> getFlashcardsByTheme(@RequestParam String theme) {
         return flashcardService.getFlashcardsByTheme(theme);
