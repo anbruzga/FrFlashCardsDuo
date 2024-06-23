@@ -1,6 +1,6 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Link, Routes } from 'react-router-dom';
-import FlashcardList from './FlashcardList';
+import {BrowserRouter as Router, Route, Link, Routes, NavLink} from 'react-router-dom';
+import DictionaryList from './DictionaryList';
 import FlashcardSession from './FlashcardSession';
 import '../styles/NavBar.css';
 
@@ -9,16 +9,26 @@ const App = () => {
         <Router>
             <div>
                 <div className="navbar">
-                    <Link to="/flashcards" className={({ isActive }) => (isActive ? "active" : "")}>Flashcards</Link>
-                    <Link to="/flashcard-session" className={({ isActive }) => (isActive ? "active" : "")}>Flashcard Session</Link>
+                    <NavLink
+                        to="/flashcards"
+                        className={({ isActive }) => (isActive ? "active" : "")}
+                    >
+                        Dictionary
+                    </NavLink>
+                    <NavLink
+                        to="/flashcard-session"
+                        className={({ isActive }) => (isActive ? "active" : "")}
+                    >
+                        Flashcards
+                    </NavLink>
                 </div>
                 <Routes>
-                    <Route path="/flashcards" element={<FlashcardList />} />
+                    <Route path="/flashcards" element={<DictionaryList />} />
                     <Route path="/flashcard-session" element={<FlashcardSession />} />
                 </Routes>
             </div>
         </Router>
     );
-}
+};
 
 export default App;
