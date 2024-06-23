@@ -35,7 +35,11 @@ The current setup can run directly on a Raspberry Pi. If you prefer a different 
    npm start
    ```
 
-There are also Dockerfiles
+There are also Dockerfiles:
+   ```bash
+   cd <project-dir>
+   docker compose up
+   ```
 
 ## Mentions and Disclaimers
 
