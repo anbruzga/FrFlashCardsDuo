@@ -1,8 +1,7 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:9090/api/flashcards'; // Ensure the correct URL
-//const API_URL = 'http://192.168.1.141:9090/api/flashcards'; // Ensure the correct URL
-//todo softcode above
+const API_URL = process.env.REACT_APP_API_URL;
+console.log('API_URL:', API_URL);  // Add this line
 
 export const getAllFlashcards = () => {
     return axios.get(API_URL);
