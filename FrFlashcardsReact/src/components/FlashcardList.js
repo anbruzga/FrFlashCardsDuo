@@ -22,9 +22,12 @@ const FlashcardList = () => {
     useEffect(() => {
         const normalizedFilter = normalize(searchText.toLowerCase());
         setFilteredFlashcards(flashcards.filter(flashcard => {
-            return (searchOptions.english && normalize(flashcard.english).toLowerCase().includes(normalizedFilter)) ||
-                (searchOptions.french && normalize(flashcard.french).toLowerCase().includes(normalizedFilter)) ||
-                (searchOptions.theme && normalize(flashcard.theme).toLowerCase().includes(normalizedFilter));
+            const normalizedEnglish = normalize(flashcard.english).toLowerCase();
+            const normalizedFrench = normalize(flashcard.french).toLowerCase();
+            const normalizedTheme = normalize(flashcard.theme).toLowerCase();
+            return (searchOptions.english && normalizedEnglish.includes(normalizedFilter)) ||
+                (searchOptions.french && normalizedFrench.includes(normalizedFilter)) ||
+                (searchOptions.theme && normalizedTheme.includes(normalizedFilter));
         }));
     }, [searchText, flashcards, searchOptions]);
 

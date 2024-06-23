@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getDistinctThemes, getFlashcardsByTheme, getPronunciation} from '../services/FlashcardService';
+import { getDistinctThemes, getFlashcardsByTheme, getPronunciation } from '../services/FlashcardService';
 import '../styles/FlashcardSession.css';
 
 const FlashcardSession = () => {
@@ -13,31 +13,35 @@ const FlashcardSession = () => {
     const [feedbackMessage, setFeedbackMessage] = useState('');
     const [feedbackColor, setFeedbackColor] = useState('');
 
-
     useEffect(() => {
-        getDistinctThemes().then(response => {
-            setThemes(response.data);
-        }).catch(error => {
-            console.error('Failed to fetch themes:', error);
-            setFeedbackMessage('Failed to load themes. Please try again later.');
-            setFeedbackColor('red');
-        });
+        const fetchThemes = async () => {
+            try {
+                const response = await getDistinctThemes();
+                setThemes(response.data);
+            } catch (error) {
+                console.error('Failed to fetch themes:', error);
+                setFeedbackMessage('Failed to load themes. Please try again later.');
+                setFeedbackColor('red');
+            }
+        };
+
+        fetchThemes();
     }, []);
 
-    const startGame = () => {
+    const startGame = async () => {
         if (selectedThemes.length > 0) {
-            Promise.all(selectedThemes.map(theme => getFlashcardsByTheme(theme)))
-                .then(responses => {
-                    const combinedFlashcards = responses.flatMap(response => response.data);
-                    shuffleFlashcards(combinedFlashcards);
-                    setIsGameStarted(true);
-                    setCurrentFlashcardIndex(0);
-                    setFeedbackMessage('');
-                }).catch(error => {
+            try {
+                const responses = await Promise.all(selectedThemes.map(theme => getFlashcardsByTheme(theme)));
+                const combinedFlashcards = responses.flatMap(response => response.data);
+                shuffleFlashcards(combinedFlashcards);
+                setIsGameStarted(true);
+                setCurrentFlashcardIndex(0);
+                setFeedbackMessage('');
+            } catch (error) {
                 console.error('Failed to fetch flashcards:', error);
                 setFeedbackMessage('Failed to load flashcards. Please try again later.');
                 setFeedbackColor('red');
-            });
+            }
         }
     };
 
@@ -120,6 +124,9 @@ const FlashcardSession = () => {
                     ))}
                 </div>
                 <button onClick={startGame}>Start</button>
+                {feedbackMessage && (
+                    <p style={{ color: feedbackColor }}>{feedbackMessage}</p>
+                )}
             </div>
         );
     }
