@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getAllFlashcards } from '../services/FlashcardService';
+import { getDistinctThemes, getFlashcardsByTheme } from '../services/FlashcardService';
 import '../styles/FlashcardSession.css';
 
 const FlashcardSession = () => {
@@ -14,41 +14,45 @@ const FlashcardSession = () => {
     const [feedbackColor, setFeedbackColor] = useState('');
 
     useEffect(() => {
-        getAllFlashcards().then(response => {
-            const allFlashcards = response.data;
-            const uniqueThemes = [...new Set(allFlashcards.map(fc => fc.theme))];
-            setThemes(uniqueThemes);
-            setFlashcards(allFlashcards);
+        getDistinctThemes().then(response => {
+            setThemes(response.data);
+        }).catch(error => {
+            console.error('Failed to fetch themes:', error);
+            setFeedbackMessage('Failed to load themes. Please try again later.');
+            setFeedbackColor('red');
         });
     }, []);
 
-    useEffect(() => {
-        if (isGameStarted && flashcards.length > 0 && currentFlashcardIndex < flashcards.length) {
-            playPronunciation();
+    const startGame = () => {
+        if (selectedThemes.length > 0) {
+            Promise.all(selectedThemes.map(theme => getFlashcardsByTheme(theme)))
+                .then(responses => {
+                    const combinedFlashcards = responses.flatMap(response => response.data);
+                    shuffleFlashcards(combinedFlashcards);
+                    setIsGameStarted(true);
+                    setCurrentFlashcardIndex(0);
+                    setFeedbackMessage('');
+                }).catch(error => {
+                console.error('Failed to fetch flashcards:', error);
+                setFeedbackMessage('Failed to load flashcards. Please try again later.');
+                setFeedbackColor('red');
+            });
         }
-    }, [isGameStarted, currentFlashcardIndex, flashcards]);
+    };
+
+    const shuffleFlashcards = (flashcards) => {
+        for (let i = flashcards.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [flashcards[i], flashcards[j]] = [flashcards[j], flashcards[i]];
+        }
+        setFlashcards(flashcards);
+    };
 
     const handleThemeChange = (event) => {
         const { name, checked } = event.target;
         setSelectedThemes(prevThemes => checked
             ? [...prevThemes, name]
             : prevThemes.filter(theme => theme !== name));
-    };
-
-    const startGame = () => {
-        setIsGameStarted(true);
-        setCurrentFlashcardIndex(0);
-        setFeedbackMessage('');
-        shuffleFlashcards();
-    };
-
-    const shuffleFlashcards = () => {
-        const filteredFlashcards = flashcards.filter(fc => selectedThemes.includes(fc.theme));
-        for (let i = filteredFlashcards.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [filteredFlashcards[i], filteredFlashcards[j]] = [filteredFlashcards[j], filteredFlashcards[i]];
-        }
-        setFlashcards(filteredFlashcards);
     };
 
     const normalize = (text) => {

@@ -24,4 +24,14 @@ public class FlashcardController {
         return flashcardService.getFlashcardById(id);
     }
 
+    @GetMapping("/theme")
+    public List<Flashcard> getFlashcardsByTheme(@RequestParam String theme) {
+        return flashcardService.getFlashcardsByTheme(theme);
+    }
+
+    @GetMapping("/themes")
+    public List<String> getDistinctThemes() {
+        return flashcardService.getDistinctThemes();
+    }
+
 }

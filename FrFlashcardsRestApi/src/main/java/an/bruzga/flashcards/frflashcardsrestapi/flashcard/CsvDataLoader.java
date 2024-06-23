@@ -30,11 +30,10 @@ public class CsvDataLoader implements ApplicationRunner {
 
     public void loadData() {
         try {
-            ClassPathResource resource = new ClassPathResource("flashcards.csv"); // Update to resources directory
+            ClassPathResource resource = new ClassPathResource("flashcards.csv");
             try (CSVReader reader = new CSVReader(new InputStreamReader(resource.getInputStream()))) {
                 List<String[]> records = reader.readAll();
 
-                // Parallel processing of records
                 List<Flashcard> flashcards = records.stream().skip(1).parallel().map(record -> {
                     Flashcard flashcard = new Flashcard();
                     flashcard.setEnglish(record[1]);

@@ -24,7 +24,7 @@ public class Flashcard {
     private String theme;
 
     @Setter
-    private String gender;  // New field for gender
+    private String gender;
 
     public void setEnglish(String english) {
         this.english = capitalizeFirstLetter(english);
@@ -51,7 +51,7 @@ public class Flashcard {
                 "id=" + id +
                 ", english='" + english + '\'' +
                 ", french='" + french + '\'' +
-                ", frenchPronunciation=" + (frenchPronunciation != null ? new String(frenchPronunciation, 0, Math.min(frenchPronunciation.length, 15)) : "null") +
+                ", frenchPronunciation=" + (frenchPronunciation != null ? new String(frenchPronunciation, 0, Math.min(frenchPronunciation.length, 15)) : "null") + // display first 15 bytes, not full audio
                 ", theme='" + theme + '\'' +
                 ", gender='" + gender + '\'' +
                 '}';

@@ -46,7 +46,7 @@ public class LexiqueDatabase {
                      .build()) {
 
             List<String[]> records = reader.readAll();
-            String[] headers = records.get(0);
+            String[] headers = records.getFirst();
 
             int wordIndex = -1;
             int genderIndex = -1;
@@ -118,19 +118,14 @@ public class LexiqueDatabase {
             return "Unknown";
         }
 
-        // Normalize word by removing definite articles
         String normalizedWord = word.toLowerCase().trim();
-
-        // Remove definite articles
         normalizedWord = removeDefiniteArticle(normalizedWord);
 
         return wordGenderMap.getOrDefault(normalizedWord, "Unknown");
     }
 
     private String removeDefiniteArticle(String word) {
-        if (word.startsWith("le ")) {
-            return word.substring(3).trim();
-        } else if (word.startsWith("la ")) {
+        if (word.startsWith("le ") || word.startsWith("la ")) {
             return word.substring(3).trim();
         } else if (word.startsWith("l'")) {
             return word.substring(2).trim();

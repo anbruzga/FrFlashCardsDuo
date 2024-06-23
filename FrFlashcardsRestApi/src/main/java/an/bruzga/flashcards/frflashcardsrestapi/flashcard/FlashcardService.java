@@ -23,9 +23,13 @@ public class FlashcardService {
         return FlashcardRepository.findById(id).orElse(null);
     }
 
-//    public List<Flashcard> getFlashcardsByTheme(String theme) {
-//        return FlashcardRepository.findByTheme(theme);
-//    }
+    public List<Flashcard> getFlashcardsByTheme(String theme) {
+        return FlashcardRepository.findByThemeIgnoreCase(theme);
+    }
+
+    public List<String> getDistinctThemes() {
+        return FlashcardRepository.findDistinctThemes();
+    }
 
     public Flashcard saveFlashcard(Flashcard Flashcard) {
         return FlashcardRepository.save(Flashcard);
