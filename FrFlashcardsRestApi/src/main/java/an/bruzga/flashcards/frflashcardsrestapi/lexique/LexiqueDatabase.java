@@ -4,6 +4,8 @@ import com.opencsv.CSVParserBuilder;
 import com.opencsv.CSVReader;
 import com.opencsv.CSVReaderBuilder;
 import com.opencsv.exceptions.CsvException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
@@ -15,22 +17,26 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-
 @Component
 public class LexiqueDatabase {
 
+    private static final Logger logger = LoggerFactory.getLogger(LexiqueDatabase.class);
     private final Map<String, String> wordGenderMap = new ConcurrentHashMap<>(10000);
-
 
     @Autowired
     public LexiqueDatabase(WordGenderMapSerializer serialiser) {
         if (!serialiser.loadWithChecksum()) {
             try {
+                logger.info("Initializing LexiqueDatabase...");
                 initializeDatabase();
                 serialiser.saveWithChecksum();
+                logger.info("LexiqueDatabase initialized successfully and checksum saved.");
             } catch (IOException | CsvException e) {
+                logger.error("Failed to initialize LexiqueDatabase", e);
                 throw new RuntimeException("Failed to initialize LexiqueDatabase", e);
             }
+        } else {
+            logger.info("LexiqueDatabase loaded successfully with checksum verification.");
         }
     }
 
@@ -47,7 +53,7 @@ public class LexiqueDatabase {
                      .build()) {
 
             List<String[]> records = reader.readAll();
-            String[] headers = records.getFirst();
+            String[] headers = records.get(0);
 
             int wordIndex = getIndex(headers, "ortho");
             int genderIndex = getIndex(headers, "genre");
@@ -57,12 +63,13 @@ public class LexiqueDatabase {
             }
 
             records.parallelStream()
-                    .skip(1)          // Skipping headers
+                    .skip(1) // Skipping headers
                     .forEach(record -> {
                         String word = record[wordIndex];
                         String gender = record[genderIndex];
                         wordGenderMap.put(word, gender);
                     });
+            logger.info("Database initialized with {} records.", wordGenderMap.size());
         }
     }
 
@@ -72,6 +79,7 @@ public class LexiqueDatabase {
                 return i;
             }
         }
+        logger.warn("Column '{}' not found in headers.", columnName);
         return -1;
     }
 
@@ -96,5 +104,4 @@ public class LexiqueDatabase {
         }
         return word;
     }
-
 }
