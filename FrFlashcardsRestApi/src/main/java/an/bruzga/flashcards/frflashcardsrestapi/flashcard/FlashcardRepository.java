@@ -18,4 +18,6 @@ public interface FlashcardRepository extends JpaRepository<Flashcard, Integer> {
     @Query("SELECT DISTINCT  f.theme FROM Flashcard f")
     List<String> findDistinctThemes();
 
+    boolean existsByFrench(String french);
+
 }

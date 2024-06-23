@@ -1,5 +1,5 @@
 package an.bruzga.flashcards.frflashcardsrestapi.flashcard;
-import an.bruzga.flashcards.frflashcardsrestapi.LexiqueDatabase;
+import an.bruzga.flashcards.frflashcardsrestapi.lexique.LexiqueDatabase;
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +22,7 @@ public class CsvDataLoader implements ApplicationRunner {
 
     @Autowired
     private LexiqueDatabase lexiqueDatabase;
+
 
     @Override
     public void run(ApplicationArguments args) throws Exception {

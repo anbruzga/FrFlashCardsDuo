@@ -31,6 +31,12 @@ public class FlashcardService {
         return FlashcardRepository.findDistinctThemes();
     }
 
+
+    public boolean existsByFrench(String french) {
+        return FlashcardRepository.existsByFrench(french);
+    }
+
+
     public Flashcard saveFlashcard(Flashcard Flashcard) {
         return FlashcardRepository.save(Flashcard);
     }

@@ -158,3 +158,7 @@ dist
 .pnp.*
 
 
+.idea
+*.ser
+*.checksum
+
