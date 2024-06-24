@@ -1,9 +1,6 @@
 ## Work in Progress: 
-- pronunciations recompiled to use share-able source, but need additional tidying up for the data source, as some words aren't pronounced correctly
+- pronunciations recompiled to use shareable source, but need additional tidying up for the data source, as some words aren't pronounced correctly
 - data source file is just too big. Need to solve that.
-
-### Voice Data Compilation
-Currently, I need to recompile the voice data to ensure it complies with the provider's terms of service for sharing. Once completed, the app will function as described below:
 
 ### App Features
 
