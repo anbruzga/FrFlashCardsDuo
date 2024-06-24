@@ -1,4 +1,4 @@
-## Work in Progress: pronounciations recompiled to use share-able source, but need additional tidying up
+## Work in Progress: pronounciations recompiled to use share-able source, but need additional tidying up for the data source, as some word's aren't pronounced correctly
 
 ### Voice Data Compilation
 Currently, I need to recompile the voice data to ensure it complies with the provider's terms of service for sharing. Once completed, the app will function as described below:
