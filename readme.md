@@ -1,4 +1,6 @@
-## Work in Progress: pronounciations recompiled to use share-able source, but need additional tidying up for the data source, as some words aren't pronounced correctly
+## Work in Progress: 
+- pronounciations recompiled to use share-able source, but need additional tidying up for the data source, as some words aren't pronounced correctly
+- data source file is just too big. Need to solve that.
 
 ### Voice Data Compilation
 Currently, I need to recompile the voice data to ensure it complies with the provider's terms of service for sharing. Once completed, the app will function as described below:
@@ -19,6 +21,9 @@ Search by English, French, or Theme. Includes a pronunciation button (Some prono
 
 
 #### Installation Instructions
+
+**UNZIP data source file manually - path is: FrFlashcardsRestApi/src/main/resources/flashcards.7z.001**. This is temporary measure.
+
 
 ##### Install and run backend
    ```bash
