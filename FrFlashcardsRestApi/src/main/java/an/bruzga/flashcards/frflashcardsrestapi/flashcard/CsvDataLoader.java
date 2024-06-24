@@ -49,8 +49,8 @@ public class CsvDataLoader implements ApplicationRunner {
                     Flashcard flashcard = new Flashcard();
                     flashcard.setEnglish(record[1]);
                     flashcard.setFrench(record[2]);
-                    flashcard.setTheme(record[4]);
-                    String base64Pronunciation = record[3];
+                    flashcard.setTheme(record[3]);
+                    String base64Pronunciation = record[4];
 
                     byte[] pronunciationData = decodeBase64(base64Pronunciation);
                     flashcard.setFrenchPronunciation(pronunciationData);
